@@ -72,6 +72,7 @@ public class MovieSearchUtils {
 	}
 	
 	public static String getMoviePoster() {
+		logger.info("image : {}", moviePoster);
 		return moviePoster;
 	}
 }
