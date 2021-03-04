@@ -60,8 +60,4 @@ public class MovieSearchUtils {
 		}
 		return speech;
 	}
-	
-	public static void main(String[] args) {
-		System.out.println(getMovieInfo("the dark knight"));
-	}
 }

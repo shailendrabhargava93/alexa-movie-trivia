@@ -11,6 +11,7 @@ import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.request.RequestHelper;
 import com.shailendra.alexa.interceptors.response.LogResponseInterceptor;
+import com.shailendra.alexa.localization.LocalizationManager;
 import com.shailendra.alexa.properties.MovieSearchUtils;
 
 public class MovieIntentHandler implements IntentRequestHandler {
@@ -24,7 +25,7 @@ public class MovieIntentHandler implements IntentRequestHandler {
 
 	@Override
 	public Optional<Response> handle(HandlerInput handlerInput, IntentRequest intentRequest) {
-		logger.info("INSIDE LAUNCH HANDLER");
+		logger.info("INSIDE MOVIE HANDLER");
 		RequestHelper requestHelper = RequestHelper.forHandlerInput(handlerInput);
 		Optional<String> slotValue = requestHelper.getSlotValue("movie_name");
 		String movieName = slotValue.map(t -> t).orElse(null);
@@ -35,7 +36,13 @@ public class MovieIntentHandler implements IntentRequestHandler {
 		else
 			response = MovieSearchUtils.getMovieInfo(movieName);
 
-		return handlerInput.getResponseBuilder().withSpeech(response).withShouldEndSession(false).build();
+		if (response == null) {
+			String speechText = LocalizationManager.getInstance().getMessage("ERROR_MSG");
+			return handlerInput.getResponseBuilder().withSpeech(speechText).withSimpleCard("ERROR", speechText)
+					.withReprompt(speechText).build();
+		} else
+			return handlerInput.getResponseBuilder().withSpeech(response).withSimpleCard("Movie Info", response)
+					.withReprompt(response).build();
 	}
 
 }
