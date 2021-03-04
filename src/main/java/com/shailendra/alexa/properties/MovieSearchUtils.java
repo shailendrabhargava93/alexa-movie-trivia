@@ -60,11 +60,12 @@ public class MovieSearchUtils {
 		moviePoster = rootNode.get("Poster").asText();
 		text.append("Wow, I have found your movie");
 		text.append("," + rootNode.get("Title").asText());
-		text.append(", it's been rated " + rootNode.get("imdbRating").asText() + " on IMDB");
-		text.append(", total box office collection is " + rootNode.get("BoxOffice").asText());
+		text.append(", It's been rated " + rootNode.get("imdbRating").asText() + " on IMDB");
+		long amount = Long.valueOf(rootNode.get("BoxOffice").asText().substring(1).replaceAll(",", ""));
+		text.append(", Total box office collection is $" + getHumanReadableAmountFromNumber(amount));
 		text.append(", It's Directed by " + rootNode.get("Director").asText());
 		text.append(", Staring " + rootNode.get("Actors").asText());
-		text.append(", Plot goes like this  " + rootNode.get("Plot").asText());
+		text.append(", Plot is :" + rootNode.get("Plot").asText());
 		text.append(" " + rootNode.get("Awards").asText());
 		speech = text.toString();
 		speech = speech.replace("&", "and");
@@ -74,5 +75,28 @@ public class MovieSearchUtils {
 	public static String getMoviePoster() {
 		logger.info("image : {}", moviePoster);
 		return moviePoster;
+	}
+	
+	public static String getHumanReadableAmountFromNumber(long number){
+	    if(number >= 1000000000){
+	        return String.format("%.2fB", number/ 1000000000.0);
+	    }
+
+	    if(number >= 1000000){
+	        return String.format("%.2fM", number/ 1000000.0);
+	    }
+
+	    if(number >= 100000){
+	        return String.format("%.2fL", number/ 100000.0);
+	    }
+
+	    if(number >=1000){
+	        return String.format("%.2fK", number/ 1000.0);
+	    }
+	    return String.valueOf(number);
+	}
+	
+	public static void main(String[] args) {
+		getMovieInfo("iron man 2");
 	}
 }
