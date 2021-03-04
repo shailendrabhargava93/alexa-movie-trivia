@@ -576,7 +576,7 @@ The Alexa Developer Console will send a HTTPS request to the ngrok endpoint (htt
 
 ##ScreenShots
 
-![image](https://drive.google.com/file/d/1c-Br6aCNZGuAc_hUpZ-cK4OY_9-6VKFe/view?usp=sharing)
+![image]<img src="https://drive.google.com/file/d/1c-Br6aCNZGuAc_hUpZ-cK4OY_9-6VKFe/view?usp=sharing">(https://drive.google.com/file/d/1c-Br6aCNZGuAc_hUpZ-cK4OY_9-6VKFe/view?usp=sharing)
 
 
 ## Conclusion 
