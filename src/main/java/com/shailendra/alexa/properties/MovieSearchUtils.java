@@ -43,7 +43,7 @@ public class MovieSearchUtils {
 				if (response != null) {
 					text.append("Wow, I have found your movie");
 					text.append(" " + rootNode.get("Title").asText());
-					//text.append(" total box office collection is " + rootNode.get("BoxOffice").asText());
+					/*text.append(" total box office collection is " + rootNode.get("BoxOffice").asText());*/
 					text.append(" It's Directed by " + rootNode.get("Director").asText());
 					text.append(" Staring " + rootNode.get("Actors").asText());
 					text.append(" Plot goes like this  " + rootNode.get("Plot").asText());
