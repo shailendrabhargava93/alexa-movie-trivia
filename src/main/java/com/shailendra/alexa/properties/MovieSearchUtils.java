@@ -15,6 +15,8 @@ import com.shailendra.alexa.interceptors.response.LogResponseInterceptor;
 public class MovieSearchUtils {
 	
 	static final Logger logger = LogManager.getLogger(LogResponseInterceptor.class);
+	
+	public static String moviePoster ="";
 	  
 	public static String getMovieInfo(String movieName) {
 		movieName = movieName.trim();
@@ -38,19 +40,9 @@ public class MovieSearchUtils {
 				logger.info("JSON String Result " + response.toString());
 				ObjectMapper mapper = new ObjectMapper();
 				JsonNode rootNode = mapper.readTree(response.toString());
-				System.out.println(rootNode);
 				StringBuilder text = new StringBuilder();
 				if (response != null) {
-					text.append("Wow, I have found your movie");
-					text.append("," + rootNode.get("Title").asText());
-					text.append("it's been rated " + rootNode.get("imdbRating").asText() + "on IMDB");
-					text.append(", total box office collection is " + rootNode.get("BoxOffice").asText());
-					text.append(", It's Directed by " + rootNode.get("Director").asText());
-					text.append(", Staring " + rootNode.get("Actors").asText());
-					text.append(", Plot goes like this  " + rootNode.get("Plot").asText());
-					text.append(" " + rootNode.get("Awards").asText());
-					speech = text.toString();
-					speech = speech.replace("&", "and");
+					speech = formatResponse(rootNode, text);
 				}
 			} else {
 				logger.info("SEARCH FAILED");
@@ -61,5 +53,25 @@ public class MovieSearchUtils {
 			return null;
 		}
 		return speech;
+	}
+
+	private static String formatResponse(JsonNode rootNode, StringBuilder text) {
+		String speech;
+		moviePoster = rootNode.get("Poster").asText();
+		text.append("Wow, I have found your movie");
+		text.append("," + rootNode.get("Title").asText());
+		text.append(", it's been rated " + rootNode.get("imdbRating").asText() + " on IMDB");
+		text.append(", total box office collection is " + rootNode.get("BoxOffice").asText());
+		text.append(", It's Directed by " + rootNode.get("Director").asText());
+		text.append(", Staring " + rootNode.get("Actors").asText());
+		text.append(", Plot goes like this  " + rootNode.get("Plot").asText());
+		text.append(" " + rootNode.get("Awards").asText());
+		speech = text.toString();
+		speech = speech.replace("&", "and");
+		return speech;
+	}
+	
+	public static String getMoviePoster() {
+		return moviePoster;
 	}
 }

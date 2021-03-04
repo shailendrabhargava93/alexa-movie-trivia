@@ -9,6 +9,7 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.impl.IntentRequestHandler;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Response;
+import com.amazon.ask.model.ui.Image;
 import com.amazon.ask.request.RequestHelper;
 import com.shailendra.alexa.interceptors.response.LogResponseInterceptor;
 import com.shailendra.alexa.localization.LocalizationManager;
@@ -36,14 +37,16 @@ public class MovieIntentHandler implements IntentRequestHandler {
 		else
 			response = MovieSearchUtils.getMovieInfo(movieName);
 
-		logger.info("Result : {}",response);
+		logger.info("Result : {}", response);
 		if (response == null) {
 			String speechText = LocalizationManager.getInstance().getMessage("ERROR_MSG");
 			return handlerInput.getResponseBuilder().withSpeech(speechText).withSimpleCard("ERROR", speechText)
 					.withReprompt(speechText).build();
-		} else
-			return handlerInput.getResponseBuilder().withSpeech(response).withSimpleCard("Movie Info", response)
+		} else {
+			Image img = Image.builder().withLargeImageUrl(MovieSearchUtils.getMoviePoster())
+					.withSmallImageUrl(MovieSearchUtils.getMoviePoster()).build();
+			return handlerInput.getResponseBuilder().withSpeech(response).withStandardCard(movieName, response, img)
 					.withReprompt(response).build();
+		}
 	}
-
 }
