@@ -8,6 +8,7 @@ import com.shailendra.alexa.handlers.ErrorHandler;
 import com.shailendra.alexa.handlers.FallbackIntentHandler;
 import com.shailendra.alexa.handlers.HelpIntentHandler;
 import com.shailendra.alexa.handlers.LaunchRequestHandler;
+import com.shailendra.alexa.handlers.MovieIntentHandler;
 import com.shailendra.alexa.handlers.MyExceptionHandler;
 import com.shailendra.alexa.handlers.SessionEndedRequestHandler;
 import com.shailendra.alexa.interceptors.request.LocalizationRequestInterceptor;
@@ -29,6 +30,7 @@ public class AlexaServlet extends SkillServlet {
                         new CancelandStopIntentHandler(),
                         new HelpIntentHandler(),
                         new LaunchRequestHandler(),
+                        new MovieIntentHandler(),
                         new SessionEndedRequestHandler(),
                         new FallbackIntentHandler(),
                         new ErrorHandler())

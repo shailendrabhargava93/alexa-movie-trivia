@@ -10,6 +10,6 @@ public class LogRequestInterceptor implements RequestInterceptor {
     static final Logger logger = LogManager.getLogger(LogRequestInterceptor.class);
     @Override
     public void process(HandlerInput input) {
-        logger.info(input.getRequestEnvelope().toString());
+        //logger.info(input.getRequestEnvelope().toString());
     }
 }

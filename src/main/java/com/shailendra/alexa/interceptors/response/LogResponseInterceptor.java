@@ -13,6 +13,6 @@ public class LogResponseInterceptor implements ResponseInterceptor {
     static final Logger logger = LogManager.getLogger(LogResponseInterceptor.class);
     @Override
     public void process(HandlerInput input, Optional<Response> output) {
-        logger.info(output.toString());
+        //logger.info(output.toString());
     }
 }
