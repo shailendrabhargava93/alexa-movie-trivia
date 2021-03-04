@@ -26,7 +26,6 @@ public class MovieIntentHandler implements IntentRequestHandler {
 
 	@Override
 	public Optional<Response> handle(HandlerInput handlerInput, IntentRequest intentRequest) {
-		logger.info("INSIDE MOVIE HANDLER");
 		RequestHelper requestHelper = RequestHelper.forHandlerInput(handlerInput);
 		Optional<String> slotValue = requestHelper.getSlotValue("movie_name");
 		String movieName = slotValue.map(t -> t).orElse(null);
