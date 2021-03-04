@@ -36,6 +36,7 @@ public class MovieIntentHandler implements IntentRequestHandler {
 		else
 			response = MovieSearchUtils.getMovieInfo(movieName);
 
+		logger.info("Result : {}",response);
 		if (response == null) {
 			String speechText = LocalizationManager.getInstance().getMessage("ERROR_MSG");
 			return handlerInput.getResponseBuilder().withSpeech(speechText).withSimpleCard("ERROR", speechText)
