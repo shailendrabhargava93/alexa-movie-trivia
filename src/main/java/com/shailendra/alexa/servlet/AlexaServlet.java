@@ -16,11 +16,14 @@ import com.shailendra.alexa.interceptors.response.LogResponseInterceptor;
 
 public class AlexaServlet extends SkillServlet {
 
-    public AlexaServlet() {
+	private static final long serialVersionUID = -7809046836484485265L;
+
+	public AlexaServlet() {
         super(getSkill());
     }
 
-    private static Skill getSkill() {
+    @SuppressWarnings("unchecked")
+	private static Skill getSkill() {
         return Skills.standard()
                 .addRequestHandlers(
                         new CancelandStopIntentHandler(),

@@ -19,7 +19,7 @@ public class WebConfig {
 
         ServletRegistrationBean<HttpServlet> servRegBean = new ServletRegistrationBean<>();
         servRegBean.setServlet(new AlexaServlet());
-        servRegBean.addUrlMappings("/alexa/*");
+        servRegBean.addUrlMappings("/alexa");
         servRegBean.setLoadOnStartup(1);
         return servRegBean;
     }
