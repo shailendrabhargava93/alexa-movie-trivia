@@ -22,7 +22,7 @@ public class LaunchRequestHandler implements RequestHandler {
         String speechText = LocalizationManager.getInstance().getMessage("WELCOME_MSG");
         return input.getResponseBuilder()
                 .withSpeech(speechText)
-                .withSimpleCard("HelloWorld", speechText)
+                .withSimpleCard("Welcome", speechText)
                 .withReprompt(speechText)
                 .build();
     }

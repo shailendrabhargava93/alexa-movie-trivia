@@ -45,7 +45,7 @@ public class MovieIntentHandler implements IntentRequestHandler {
 			Image img = Image.builder().withLargeImageUrl(MovieSearchUtils.getMoviePoster())
 					.withSmallImageUrl(MovieSearchUtils.getMoviePoster()).build();
 			return handlerInput.getResponseBuilder().withSpeech(response).withStandardCard(movieName, response, img)
-					.withReprompt(response).build();
+					.withReprompt("Do you want to about any other movie?").build();
 		}
 	}
 }

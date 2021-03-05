@@ -21,7 +21,7 @@ public class HelpIntentHandler implements RequestHandler {
         String speechText = LocalizationManager.getInstance().getMessage("HELP_MSG");
         return input.getResponseBuilder()
                 .withSpeech(speechText)
-                .withSimpleCard("HelloWorld", speechText)
+                .withSimpleCard("Help", speechText)
                 .withReprompt(speechText)
                 .build();
     }

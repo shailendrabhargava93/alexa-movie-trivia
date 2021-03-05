@@ -25,7 +25,7 @@ public class FallbackIntentHandler implements RequestHandler {
         String speechText =  LocalizationManager.getInstance().getMessage("FALLBACK_MSG");
         return input.getResponseBuilder()
                 .withSpeech(speechText)
-                .withSimpleCard("HelloWorld", speechText)
+                .withSimpleCard("Error", speechText)
                 .withReprompt(speechText)
                 .build();
     }

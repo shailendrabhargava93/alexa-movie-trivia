@@ -20,7 +20,7 @@ public class CancelandStopIntentHandler implements RequestHandler {
         String speechText =  LocalizationManager.getInstance().getMessage("GOODBYE_MSG");;
         return input.getResponseBuilder()
                 .withSpeech(speechText)
-                .withSimpleCard("HelloWorld", speechText)
+                .withSimpleCard("Bye", speechText)
                 .build();
     }
 }
